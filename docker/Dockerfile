@@ -9,13 +9,13 @@ RUN apt-get update && apt-get install -y \
 # Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Copy Laravel app from outside docker folder
+COPY ../laravel /var/www/html
+
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy Laravel app from parent folder
-COPY ../laravel /var/www/html
-
-# Set permissions
+# Set permissions (very important)
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 775 storage bootstrap/cache
 
@@ -35,12 +35,17 @@ RUN echo '<Directory /var/www/html/public>\n\
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Copy custom entrypoint script
-COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+# Laravel setup (only works if env vars are available from dashboard)
+RUN php artisan config:clear && \
+    php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache && \
+    php artisan key:generate && \
+    php artisan migrate --force && \
+    php artisan storage:link || true
 
-# Expose Apache port
+# Expose port
 EXPOSE 80
 
-# Use custom entrypoint to run artisan commands after env is available
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+# Start Apache
+CMD ["apache2-foreground"]
