@@ -1,0 +1,214 @@
+.overflow{
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100vh;
+     display: none;
+     background: rgba(0, 0, 0, 0.2);
+     z-index: 10000;
+ }
+ 
+.Checkout-section{
+    max-width: 1400px;
+    margin: 0 auto; 
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 1.8rem 0;
+}
+.Checkout-section .Checkout-details{
+    min-width: 70%;
+    display: grid;
+    gap: 15px;
+}
+.Checkout-section .shipping-address,.payment-Methods,.Shipping-method{
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+.Checkout-section :is(.shipping-address,.payment-Methods,.Shipping-method) h3{ 
+    margin-bottom: 10px;
+    color: #333;
+}
+.Checkout-section .address-details,.payment-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Checkout-section :is(.address-details,.payment-card,.shipping-method-details) p{
+    margin-bottom: 4px;
+    color: #555;
+    font-size: 14px;
+}
+
+.Checkout-section :is(.address-details,.shipping-method-details)  p.paragraph{
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+}
+.Checkout-section .address-details .phone-number{
+    font-weight: normal;
+}
+.Checkout-section :is(.address-details,.payment-card) button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #007BFF;
+    font-size: 1rem;
+}
+.Checkout-section .items-details{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.3rem;
+}
+.Checkout-section .Shipping-method .heading-for-details{
+    margin-top: 1.5rem;
+}
+ 
+.Checkout-section .item-image{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center; 
+    border-radius: 5px;
+}
+.Checkout-section .cart-item.exceed-limit .item-image::before{
+    content: 'exceed Limit';
+    color: red;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    left: 0;
+    top: 0; 
+    background: rgba(0, 0, 0, 0.5);
+}
+.Checkout-section .items-details p{
+    margin: 8px 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+.Checkout-section .quantity-selector {
+    display: flex;
+    align-items: center;
+}
+
+.Checkout-section .qty-btn {
+   width: 30px;
+   height: 30px;
+   background: #f1f1f1;
+   border: none;
+   font-size: 16px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.Checkout-section .qty-input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+}
+.Checkout-section .qty-input:disabled + .qty-btn.plus,.Checkout-section .qty-btn.minus:disabled{
+    opacity: 0.7;
+    color: #999; 
+    cursor: not-allowed;
+}
+
+.Checkout-section .Shipping-method > button{
+    padding: 10px 20px;
+    background: #007BFF;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    border: none;
+    border-radius: 10px;
+}
+
+.Checkout-section .summary-card { 
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    background: #ffffff;
+}
+.Checkout-section .summary-title {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.Checkout-section .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+.Checkout-section .total-row {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.Checkout-section .coupon-section {
+    display: flex;
+    margin: 20px 0;
+}
+
+.Checkout-section .coupon-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+}
+
+ .Checkout-section .apply-coupon {
+    padding: 0 15px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.Checkout-section .checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background 0.2s;
+}
+
+.Checkout-section .checkout-btn:hover {
+    background: #ff5252;
+}
+
+.Checkout-section .continue-shopping a {
+    color: #666;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.Checkout-section .continue-shopping i {
+    margin-right: 5px;
+}
