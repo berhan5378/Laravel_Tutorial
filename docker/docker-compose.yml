@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: laravel_app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /var/www
+    volumes:
+      - ../laravel:/var/www
+    depends_on:
+      - db
+    networks:
+      - laravel_network
+
+  web:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "8001:80"
+    volumes:
+      - ../laravel:/var/www
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - laravel_network
+networks:
+  laravel_network:
+    driver: bridge
